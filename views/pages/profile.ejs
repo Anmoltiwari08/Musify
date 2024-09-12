@@ -1,0 +1,269 @@
+<% 
+// current  user profle 
+ const  {
+display_name :profileName,
+images:profileImages,
+followers:{total:totalProfileFollowers}
+} = locals.currentProfile
+
+// user top tracks 
+
+const {
+ total:userTotalTopTracks,
+ next : userTopTracksNext,
+ items:userTopTrackItems
+} = locals.userTopTracks
+
+// user top artist 
+
+const {
+ total:userTotalTopArtist,
+ next : userTopArtistsNext,
+ items:userTopArtistItems
+} = locals.userTopArtist
+
+// user followed artist 
+
+const {
+ total:userTotalFollowedArtist,
+ next : userFollowedArtistNext,
+ items:userFollowedArtistItems
+} = locals.userFolloweedArtist
+%>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+        <%- include('../layouts/head',{title: ` ${profileName} | Musify`}) %>
+           
+            <style>                 
+            .detail-header { align-items: center; }       
+            .detail-banner{ border-radius: var(--radius-full); }
+         
+
+            </style>
+
+    </head>
+
+    <body>
+
+            <!---
+            # Recenly Played
+            -->
+
+        <%- include('../layouts/recently_played',{ recentlyPlayed : locals.recentlyPlayedTracks }) %>
+
+            <article class="page custom-scrollbar" data-page>
+
+                <!---
+            - #Top app bar
+            -->
+
+                <%- include('../partials/top_bar',locals.currentProfile ) %>
+
+                    <!---
+                - #TBottom bar
+                -->
+ 
+                    <%- include('../partials/bottom_nav',{currentRoute:'/album'} ) %>
+
+                        <div class="main">
+                            <!--
+                            - PROFILE
+                            -->
+
+                            <section class="detail-header">
+                                <figure class="img-holder detail-banner">
+                                    <%
+                                    const {
+                                    url= '/images/artist-banner.png',
+                                    width= 300,
+                                    height = 300
+                                    } = profileImages[1] ||  {} 
+                                    %>
+
+                                    <img src="<%=url%>" alt="<%=profileName%>" width="<%=width%>"
+                                    height="<%=height%>" class="img-cover" data-image-load-anim>
+
+                                </figure>
+
+                                <div class="detail-content">
+                                    <p class="label-large detail-subtitle">
+                                       Profile
+                                    </p>
+
+                                    <h2 class="headline-large detail-title">
+                                        <%=profileName %>
+                                    </h2>
+
+                                    <div class="detail-text has-separator">
+                                    <p class="label-large"><%=totalProfileFollowers%> Followers</p>
+                                    <span class="separator"></span>
+
+                                    <p class="label-large">
+                                        <%= userTotalFollowedArtist %>  Following
+                                    </p>
+
+                                    </div>
+                                  
+                                </div>
+
+                            </section>
+
+                            <div class="divider variant "></div>
+
+
+                            <!--
+                            - #TOP ARTIST
+                            -->
+
+                            <%  if(userTotalTopArtist) {  %>
+                                <section class="section">
+                                    <div class="title-wrapper">
+                                        <h2 class="title-large section-title">Top artists</h2>
+                                        <% if (userTopArtistsNext!== null)  {  %>
+ 
+                                        <a href="/me/top/artist" class="btn bt"data-ripple>
+                                                    <span class="label-large">See all</span>
+                                                    <div class="state-layer"></div>
+                                                </a>
+                                        <% }  %>
+                                    </div>
+
+                                    <div class="slider">
+                                        <div class="slider-inner">
+                                            <% userTopArtistItems.forEach(({name,type,images,id,uri})=>{  %>
+                                                                                            
+                                           <% const [image] = images || {} %>
+
+                                           <%- include('../partials/card',{
+                                            variant:'artist-card',
+                                            title:name,
+                                            image,
+                                            type:'artist',
+                                            text:type,
+                                            link:`/artist/${id}`,
+                                            uri
+                                           }) %>
+                                           
+                                           <% }) %>
+                                        </div>
+                                    </div>
+                                </section>
+
+                            <% }  %>
+                         
+
+                            
+                            <!--
+                            - #TOP TRACks
+                            -->
+
+                            <%  if(userTotalTopTracks) {  %>
+                                <section class="section">
+                                    <div class="title-wrapper">
+                                        <h2 class="title-large section-title">Top Tracks</h2>
+                                        <% if (userTopTracksNext!== null)  {  %>
+ 
+                                        <a href="/me/top/track" class="btn bt" data-ripple>
+                                                    <span class="label-large">See all</span>
+                                                    <div class="state-layer"></div>
+                                                </a>
+                                        <% }  %>
+                                    </div>
+
+                                   <div class="list">
+                                    <% userTopTrackItems.forEach(({album:{images,name:albumName},artists,name,duration_ms,id,uri:trackUri},index)=> { %>
+
+                                        <%
+                                        const text = artists.map(({name})=>name).join(', ')
+                                        index++;
+                                        %>
+
+                                        <%- include('../partials/list_item',{
+                                            title:name,
+                                            images,
+                                            text,
+                                            duration_ms,
+                                            id,
+                                            trackNumber:index,
+                                            albumName,
+                                            trackUri
+                                        }) %>                                                                      
+                                     
+
+                                        <% } )  %>
+                                   </div>
+
+                                </section>
+
+                            <% }  %>
+
+                               
+                            <!--
+                            - # Following Artists
+                            -->
+                           
+                            <%  if(userTotalFollowedArtist) {  %>
+                                <section class="section">
+                                    <div class="title-wrapper">
+                                        <h2 class="title-large section-title">Following </h2>
+                                        <% if (userFollowedArtistNext!== null)  {  %>
+ 
+                                        <a href="/me/following" class="btn bt"data-ripple>
+                                                    <span class="label-large">See all</span>
+                                                    <div class="state-layer"></div>
+                                                </a>
+                                        <% }  %>
+                                    </div>
+
+                                    <div class="slider">
+                                        <div class="slider-inner">
+                                           <% userFollowedArtistItems.forEach(({name,type,images,id,uri})=>{  %>
+                                                                                            
+                                           <% const [image] = images || {} %>
+
+                                           <%- include('../partials/card',{
+                                            variant:'artist-card',
+                                            title:name,
+                                            image,
+                                            type:'artist',
+                                            text:type,
+                                            link:`/artist/${id}`,
+                                            uri
+                                           }) %>
+                                           
+                                           <% }) %>
+                                        </div>
+                                    </div>
+                                </section>
+
+                            <% }  %>
+
+                            </div>
+                                  
+                            <!--
+                            - #player sm
+                            -->
+
+                        <%- include('../partials/player_sm') %>
+
+                            <!--
+                        - #player lg
+                        -->
+                            <%- include('../partials/player_lg') %>
+
+                                <!---
+                                - #Footer bar
+                                -->
+
+                                <%- include('../layouts/footer') %>
+
+            </article>
+
+    </body>
+
+    </html>
+  

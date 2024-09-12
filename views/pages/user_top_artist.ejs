@@ -1,0 +1,98 @@
+<%  
+// user top artists  
+  const {   
+       items : artistItems   
+       } = locals.artists  
+%> 
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+
+        <%- include('../layouts/head',{title: ` ${locals.title} | Musify`}) %>
+       
+    </head>
+
+    <body>
+
+            <!---
+            - # Recenly Played
+            -->
+            
+        <%- include('../layouts/recently_played',{ recentlyPlayed : locals.recentlyPlayedTracks }) %>
+            
+            <article class="page custom-scrollbar" data-page>
+            
+            <!---
+            - #Top app bar
+            -->
+            
+                <%- include('../partials/top_bar',locals.currentProfile ) %>
+
+                <!---
+                - #TBottom bar
+                -->
+
+                    <%- include('../partials/bottom_nav') %>
+
+                        <div class="main">
+                            <section class="section">
+                                <div class="title-wrapper">
+                                    <h2 class="title-large section-title">
+                                        <%=locals.title%>
+                                    </h2>
+
+                                </div>
+
+                                <div class="grid-list">
+                                                 
+                                    <% artistItems.forEach(({name,type,images,id,uri})=>{ %> 
+                
+                                            <% 
+                                              const [image]= images || []
+                                             %> 
+        
+                                             <%- include('../partials/card',{
+                                                image,
+                                                variant: 'artist-card',
+                                                title:name,
+                                                text:type,
+                                                link:`/artist/${id}`,
+                                                uri 
+                                             }) %>
+                                              
+                                        <% }) %> 
+        
+                                </div>
+                             
+                            </section>
+                        </div>
+ 
+                          <!--------
+                          -# PAGINATION
+                          --------->
+                           <%- include('../partials/pagination', locals.artists ) %>
+                                                                            
+                            <!--
+                            - #player sm
+                            -->
+                          
+                            <%- include('../partials/player_sm') %>
+
+                        <!--
+                        - #player lg
+                        -->
+                        <%- include('../partials/player_lg') %>
+
+                                <!---
+                                - #Footer bar
+                                -->
+
+                                <%- include('../layouts/footer') %>
+                     
+            </article>
+                         
+    </body>
+
+    </html>
