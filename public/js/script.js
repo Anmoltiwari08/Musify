@@ -5,6 +5,8 @@
  */
 
 import { addEventOnElems } from "./utils.js"
+// const { addEventOnElems } = require("./utils.js");
+
 
 /**
  * Search clear functionality
@@ -208,6 +210,3 @@ const activeSearchFilterItem = function (){
 }
 
 $searchFilterItems && addEventOnElems($searchFilterItems)
-
-
-

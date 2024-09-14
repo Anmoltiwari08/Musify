@@ -1,4 +1,5 @@
 'use strict'
+
 /**
  * Add events on elements
  */
@@ -25,3 +26,7 @@ const msToTimeCode  = (ms)=>{
 }
 
 export {addEventOnElems , msToTimeCode } 
+// module.exports = {
+//      addEventOnElems,
+//      msToTimeCode
+//  };

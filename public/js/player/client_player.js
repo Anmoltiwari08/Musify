@@ -7,6 +7,9 @@
 import { cookies, transferPlayback, play } from "./client_player.api.js"
 import { addEventOnElems, msToTimeCode } from "../utils.js"
 
+// const { cookies, transferPlayback, play } = require("./client_player.api.js");
+// const { addEventOnElems, msToTimeCode } = require("../utils.js");
+
 const /**{Array<HTMLElement} */ $players = document.querySelectorAll('[data-player]')
 const /**{Array<HTMLElement} */ $playerNextBtn = document.querySelector('[data-player-next-btn]')
 const /**{Array<HTMLElement} */ $playerPrevBtn = document.querySelector('[data-player-prev-btn]')
