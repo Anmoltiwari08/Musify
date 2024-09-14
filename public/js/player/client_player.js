@@ -92,7 +92,7 @@ const updatePlayerBtnState = (playerState, $player) => {
     $playerControlPlay.dataset.playBtn = paused ? 'play' : 'pause';
 
 }
-
+ 
 const /**{string} */ DocumentTitle = document.title
 
 const updateDocumentTitle = (playerState) => {

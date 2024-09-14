@@ -2,7 +2,6 @@
 
 const cookies = new Map(document.cookie.split('; ').map(item => item.split('=')))
 
-
 const BASE_URL = 'https://api.spotify.com/v1'
 
 const headers = {
