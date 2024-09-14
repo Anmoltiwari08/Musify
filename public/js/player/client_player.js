@@ -7,12 +7,9 @@
 import { cookies, transferPlayback, play } from "./client_player.api.js"
 import { addEventOnElems, msToTimeCode } from "../utils.js"
 
-
 const /**{Array<HTMLElement} */ $players = document.querySelectorAll('[data-player]')
 const /**{Array<HTMLElement} */ $playerNextBtn = document.querySelector('[data-player-next-btn]')
 const /**{Array<HTMLElement} */ $playerPrevBtn = document.querySelector('[data-player-prev-btn]')
-
-
 
 const updatePlayerInfo = (playerState, $player) => {
 
@@ -38,9 +35,7 @@ const updatePlayerInfo = (playerState, $player) => {
         height
     } = trackImages.find(item => item.width > 200 && item.width < 400)
 
-
     const /** {string} */ artistName = trackArtists.map(({ name }) => name).join(', ')
-
 
     $trackBanner.src = url;
     $trackBanner.width = width

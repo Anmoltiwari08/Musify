@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser')
 // initial express app
 const express = require("express");
 const app = express()
+const path = require('path');
 
 /**
  * custom modules
@@ -31,13 +32,15 @@ const logout = require('./src/routes/logout.route')
 /**
  * EJS Setting
  */
+app.set('views', path.join(__dirname, 'views')); 
 app.set('view engine', 'ejs')
 
 /**
  * Setting static files 
 */
 
-app.use(express.static(`${__dirname}/public`))
+
+app.use(express.static(`${__dirname}/public`));
 
 /**
  * Enabel cors nd cookie parser
