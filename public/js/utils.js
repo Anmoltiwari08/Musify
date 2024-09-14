@@ -1,5 +1,6 @@
 'use strict'
 
+
 /**
  * Add events on elements
  */
