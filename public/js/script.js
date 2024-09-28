@@ -1,14 +1,13 @@
 'use strict'
 
+console.log("hello world")
 
 /**
  * custom module
  */
 
 import { addEventOnElems } from "./utils.js"
-// const { addEventOnElems } = require("./utils.js");
-
-
+ 
 /**
  * Search clear functionality
  */
@@ -120,7 +119,6 @@ $rippleElems?.forEach(item => ripple(item))
 window.addEventListener('DOMContentLoaded',function () {
     const /**{Array<HTMLElement>} */ $animatedImages = document.querySelectorAll('[data-image-load-anim]')
 
-
     const addAnimation = function () {
         this.animate({opacity:1},{duration:200, fill:'forwards' })
             }
@@ -157,8 +155,6 @@ $bottomNavItems && addEventOnElems($bottomNavItems,'click',activeNavItem)
  * Player modal toggle 
  */
    
-
-
 const /**{HTMLElement} */ $modalPlayer = document.querySelector('[data-modal-player]')
 const  /**{Array<HTMLElement>} */ $modalPlayerToggler = document.querySelectorAll('[data-modal-player-toggler]')
 const /**{HTMLElement} */ $modalPlayerOverlay = document.querySelector('[data-player-overlay]')

@@ -27,7 +27,4 @@ const msToTimeCode  = (ms)=>{
 }
 
 export {addEventOnElems , msToTimeCode } 
-// module.exports = {
-//      addEventOnElems,
-//      msToTimeCode
-//  };
+

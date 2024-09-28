@@ -19,13 +19,13 @@ const token = axios.create({
         'Authorization': `Basic ${Buffer.from(apiConfig.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')}`,
         'content-type': 'application/x-www-form-urlencoded',
     }
-
+    
 })
 
 /** 
  * axios instance for all api request 
  */
-
+  
 const api = axios.create({ baseURL: apiConfig.BASE_URL })
         
 const getData = async (apiUrl, access_token) => {
