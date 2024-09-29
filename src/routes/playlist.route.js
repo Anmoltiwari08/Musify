@@ -1,20 +1,23 @@
-'use strict'
+"use strict";
 
 /**
  * node modules
  * 
  */
 
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  * custom modules
  * 
  */
 
-const {playlist,playlistDetail} = require('../controllers/playlist.controller')
+import { playlist, playlistDetail } from '../controllers/playlist.controller.js';
 
-router.get(['/','/page/:page'],playlist)
+const router = Router();
 
-router.get('/:playlistId',playlistDetail)
-module.exports = router 
+router.get(['/','/page/:page'], playlist);
+
+router.get('/:playlistId', playlistDetail);
+
+export default router;

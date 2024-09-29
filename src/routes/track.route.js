@@ -1,17 +1,19 @@
-'use strict'
+"use strict";
 
 /**
  * node modules 
  */
 
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  * custom modules
  */
 
-const {trackDetail} = require('../controllers/track.controller')
+import { trackDetail } from '../controllers/track.controller.js';
 
-router.get('/:trackId',trackDetail)
+const router = Router();
 
-module.exports = router 
+router.get('/:trackId', trackDetail);
+
+export default router

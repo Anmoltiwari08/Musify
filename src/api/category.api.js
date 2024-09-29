@@ -1,27 +1,29 @@
 'use strict'
 
-const { getData}= require('../config/axios.config')
-const { get } = require('../routes/explore.route')
-const { getUrlQuery} = require('../utils/helpers.util')
+"use strict";
 
-const getSeveralDetail = async (req)=>{
-    const { offset,limit,page} =  getUrlQuery(req.params)
+import { getData } from '../config/axios.config.js';
+// import { get } from '../routes/explore.route.js';
 
-    const {data:{categories}} = await getData(`/browse/categories?limit=${limit}&offset=${offset}`,req.cookies.access_token)
+import {  getUrlQuery } from '../utils/helpers.util.js';
 
-    return { baseUrl:req.baseUrl,page,name:'Explore',...categories }
-    
-}
+const getSeveralDetail = async (req) => {
+    const { offset, limit, page } = getUrlQuery(req.params);
 
-const getDetail = async (req)=>{
-        const { categoryId } = req.params
+    const { data: { categories } } = await getData(`/browse/categories?limit=${limit}&offset=${offset}`, req.cookies.access_token);
 
-        const {data:catInfo} = await getData(`/browse/categories/${categoryId}`,req.cookies.access_token)
-        
-        return catInfo
-}
+    return { baseUrl: req.baseUrl, page, name: 'Explore', ...categories };
+};
 
-module.exports ={
+const getDetail = async (req) => {
+    const { categoryId } = req.params;
+
+    const { data: catInfo } = await getData(`/browse/categories/${categoryId}`, req.cookies.access_token);
+
+    return catInfo;
+};
+
+export {
     getSeveralDetail,
     getDetail
-}
+};

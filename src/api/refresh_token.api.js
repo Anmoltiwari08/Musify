@@ -1,21 +1,21 @@
-'use strict'
+"use strict";
 
 /**
  * custom modules
  */
 
-const axiosConfig = require('../config/axios.config')
+import * as axiosConfig from '../config/axios.config.js';
 
 const getRefreshToken = async (refreshToken) => {
     try {
         const response = await axiosConfig.token.post('/token', {
             grant_type: 'refresh_token',
             refresh_token: refreshToken
-        }) 
-        return response  
+        });
+        return response;
     } catch (error) {
         console.log(error);
     }
-} 
- 
-module.exports = getRefreshToken
+};
+
+export default getRefreshToken;

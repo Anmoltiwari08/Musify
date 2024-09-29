@@ -2,14 +2,13 @@
   "name": "musify",
   "version": "1.0.0",
   "main": "app.js",
-   "scripts": {
+  "type": "module",
+  "scripts": {
     "dev": "nodemon app"
   },
   "keywords": [],
-  "author": "codewithsadee",
-  "contributors": [
-    "anmoltiwari"
-  ],
+  "author": "AnmolTiwari",
+  
   "license": "Apache-2.0",
   "description": "A web-based music streaming application that allows users to browse, play, and manage their favorite songs and playlists.",
   "dependencies": {
@@ -23,5 +22,4 @@
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.4"
   }
-  
 }

@@ -4,10 +4,10 @@
  * custom Modules
  */
 
-const userApi = require("../api/user.api")
-const playerApi = require('../api/player.api')
-const categoryApi = require('../api/category.api')
-const playlistApi = require('../api/playlist.api')
+import * as userApi from '../api/user.api.js';
+import * as playerApi from '../api/player.api.js';
+import * as categoryApi from '../api/category.api.js';
+import * as playlistApi from '../api/playlist.api.js';
 
 const explore = async (req, res) => {
 
@@ -58,7 +58,7 @@ const exploreDetail = async (req, res) => {
 
 }
 
-module.exports = {
+export {
   explore,
   exploreDetail
 }

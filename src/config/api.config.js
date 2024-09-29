@@ -1,41 +1,42 @@
-'use strict'
+"use strict";
 
 /**
  * node modules
  */
 
-require('dotenv').config()
-       
-//The base  address of web api
-const BASE_URL = 'https://api.spotify.com/v1'
+import dotenv from 'dotenv';
+dotenv.config();
 
-// The base address of spotify authentiction token 
-const TOKEN_BASE_URL  ='https://accounts.spotify.com/api'
+// The base address of web api
+const BASE_URL = 'https://api.spotify.com/v1';
 
-//Spotify client ID
-const CLIENT_ID = process.env.CLIENT_ID
+// The base address of spotify authentication token
+const TOKEN_BASE_URL = 'https://accounts.spotify.com/api';
 
-//Redirect url for spotify authorization code flow 
-const REDIRECT_URI = process.env.REDIRECT_URI
+// Spotify client ID
+const CLIENT_ID = process.env.CLIENT_ID;
 
-//Scope of spotify api request 
-const SCOPE = process.env.SCOPES
+// Redirect url for spotify authorization code flow
+const REDIRECT_URI = process.env.REDIRECT_URI;
 
-// Authentication state key 
-const  STATE_KEY = 'spotify_auth_state'
+// Scope of spotify api request
+const SCOPE = process.env.SCOPES;
 
-// Api request queries 
-const MARKET = "US"
-const LOW_LIMIT =12
-const DEFAULT_LIMIT = 20
+// Authentication state key
+const STATE_KEY = 'spotify_auth_state';
 
-// musicmatch base url for track lyrics 
+// Api request queries
+const MARKET = "US";
+const LOW_LIMIT = 12;
+const DEFAULT_LIMIT = 20;
+
+// Musicmatch base url for track lyrics
 const MUSIXMATCH_BASE_URL = 'https://api.musixmatch.com/ws/1.1/';
 
-// Musicmatch api key 
-const MUSIXMATCH_API_KEY = process.env.MUSIXMATCH_API_KEY 
+// Musicmatch api key
+const MUSIXMATCH_API_KEY = process.env.MUSIXMATCH_API_KEY;
 
-module.exports={
+export {
     STATE_KEY,
     SCOPE,
     REDIRECT_URI,
@@ -46,6 +47,5 @@ module.exports={
     LOW_LIMIT,
     DEFAULT_LIMIT,
     MUSIXMATCH_BASE_URL,
-    MUSIXMATCH_API_KEY 
-}
-
+    MUSIXMATCH_API_KEY
+};

@@ -1,76 +1,70 @@
-'use strict'
+"use strict";
 
 /**
  *  custom modules
  */
 
-   
-const userApi = require('../api/user.api')
-const playerApi = require('../api/player.api')
-const apiConfig = require('../config/api.config')
-const artistApi = require('../api/artist.api')
-const {msToTimeCode} = require('../utils/helpers.util')
-
-
-const artistDetail = async (req,res)=>{
-    //current user profile
+import *as playerApi from '../api/player.api.js';
+import *as userApi from '../api/user.api.js';
+import *as apiConfig from '../config/api.config.js';
+import *as artistApi from '../api/artist.api.js';
+import { msToTimeCode } from '../utils/helpers.util.js';
+       
+const artistDetail = async (req, res) => {
+    // current user profile
     const currentProfile = await userApi.getProfile(req);
-    
-    // recently played tracks 
-    const recentlyPlayed = await playerApi.getRecentlyPlayed(req)
-    const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track)
-    
-    // artist albums
-    const artistAlbums = await artistApi.getAlbum(req,apiConfig.LOW_LIMIT)
 
-    //artist detail
+    // recently played tracks
+    const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
+    const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track);
+
+    // artist albums
+    const artistAlbums = await artistApi.getAlbum(req, apiConfig.LOW_LIMIT);
+
+    // artist detail
     const artistDetail = await artistApi.getDetail(req);
 
     // artist top tracks
-    const artistTopTrack = await artistApi.getTopTracks(req)
+    const artistTopTrack = await artistApi.getTopTracks(req);
 
     // artist related artists
+    const relatedArtist = await artistApi.getArtistRelated(req);
 
-    const relatedArtist = await artistApi.getArtistRelated(req)
-    
-    res.render('./pages/artist_detail',{ 
-        currentProfile, 
+    res.render('./pages/artist_detail', {
+        currentProfile,
         recentlyPlayedTracks,
         artistAlbums,
         artistDetail,
         artistTopTrack,
         relatedArtist,
-        relatedArtist,
         msToTimeCode
-    })
-     
-}
-    
-const artistAlbum = async (req,res)=>{
-    //current user profile
+    });
+};
+
+const artistAlbum = async (req, res) => {
+    // current user profile
     const currentProfile = await userApi.getProfile(req);
-    
-    // recently played tracks 
-    const recentlyPlayed = await playerApi.getRecentlyPlayed(req)
-    const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track)
-     
+
+    // recently played tracks
+    const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
+    const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track);
+
     // artist albums
-    const artistAlbums = await artistApi.getAlbum(req,apiConfig.LOW_LIMIT)
-     
-    //artist detail
+    const artistAlbums = await artistApi.getAlbum(req, apiConfig.LOW_LIMIT);
+
+    // artist detail
     const artistDetail = await artistApi.getDetail(req);
-     
-    res.render('./pages/album',{ 
-        currentProfile, 
+
+    res.render('./pages/album', {
+        currentProfile,
         recentlyPlayedTracks,
-        title:artistDetail.name,
-        albums:artistAlbums,
-        isArtistAlbum:true 
-    })
-    
-}
-module.exports ={
+        title: artistDetail.name,
+        albums: artistAlbums,
+        isArtistAlbum: true
+    });
+};
+
+export {
     artistDetail,
     artistAlbum
-}
-
+};

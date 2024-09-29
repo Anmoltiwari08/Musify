@@ -4,13 +4,13 @@
  * custom modules
  */
 
-const apiConfig = require('../config/api.config')
-const userApi = require('../api/user.api')
-const playerApi = require('../api/player.api')
-const trackApi = require('../api/track.api')
-const artistApi = require('../api/artist.api')
-const albumApi = require('../api/album.api')
-const playlistApi = require('../api/playlist.api')
+import * as apiConfig from '../config/api.config.js';
+import * as userApi from '../api/user.api.js';
+import * as playerApi from '../api/player.api.js';
+import * as trackApi from '../api/track.api.js';
+import * as artistApi from '../api/artist.api.js';
+import * as albumApi from '../api/album.api.js';
+import * as playlistApi from '../api/playlist.api.js';
 
 
 const home = async (req, res) => {
@@ -43,23 +43,23 @@ const home = async (req, res) => {
 
   // featured playlists
   const featuredPlaylist = await playlistApi.getFeatured(req, apiConfig.LOW_LIMIT)
- 
-  // Top Playlists
-  const topPlaylist = await playlistApi.getCategoryPlaylist(req,apiConfig.LOW_LIMIT)
-  // console.log(topPlaylist);
-  
 
-  res.render('./pages/home', {
+  // Top Playlists
+  const topPlaylist = await playlistApi.getCategoryPlaylist(req, apiConfig.LOW_LIMIT)
+  // console.log(topPlaylist);
+
+
+  res.render( 'pages/home', {
     currentProfile,
     recommendedAlbums,
     recommendedArtists,
     newRelease,
     featuredPlaylist,
-    topPlaylist ,
+    topPlaylist,
     recentlyPlayedTracks
 
-  })      
+  })
 
 }
 
-module.exports = { home }
+export { home }

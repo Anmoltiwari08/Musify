@@ -1,22 +1,17 @@
-'use strict'
+"use strict";
 
-/**
- * node modules
- */
-
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  *  custom modules
  */
 
-const {
-    artistDetail,
-    artistAlbum 
-} = require('../controllers/artist.controller')
+import { artistDetail, artistAlbum } from '../controllers/artist.controller.js';
 
-router.get('/:artistId',artistDetail)
+const router = Router();
 
-router.get(['/:artistId/album','/:artistId/album/page/:page'],artistAlbum)
+router.get('/:artistId', artistDetail);
 
-module.exports = router
+router.get(['/:artistId/album', '/:artistId/album/page/:page'], artistAlbum);
+
+export default router;

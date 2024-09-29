@@ -1,13 +1,14 @@
 'use strict'
 
-const { REDIRECT_URI } = require("../config/api.config")
 
+// import { REDIRECT_URI } from '../config/api.config.js';
 /**
  * custom modules
  */
 
-const apiConfig = require('../config/api.config')
-const axiosConfig = require('../config/axios.config')
+import * as apiConfig from '../config/api.config.js';
+import * as axiosConfig from '../config/axios.config.js';
+
 
 const getToken = async function(code){
     try {
@@ -26,7 +27,7 @@ const getToken = async function(code){
     }
 }
 
-module.exports ={
+export{
     getToken
 }
 

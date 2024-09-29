@@ -1,8 +1,9 @@
-'use strict'
+"use strict";
+
 /**
  * custom modules
  */
-const apiConfig = require('../config/api.config')
+import * as apiConfig from '../config/api.config.js';
 
 /**
  * Generate a random string containing numbers and letters 
@@ -50,8 +51,8 @@ const msToTimeCode  = (ms)=>{
 }
 
 
-module.exports = {
+export  {
     generateRandomString,
     getUrlQuery,
     msToTimeCode
-}
+};

@@ -4,11 +4,12 @@
  * custom modules
  */
 
-const  {getData}  = require('../config/axios.config');
-const { getUrlQuery } = require('../utils/helpers.util');
+import { getData } from '../config/axios.config.js';
+
+import  {getUrlQuery}  from '../utils/helpers.util.js';
 
 const getProfile = async (req) => {
-    const /** {object}  */  {data:currentProfile}  = await getData('/me', req.cookies.access_token)
+    const /** {object}  */  { data: currentProfile } = await getData('/me', req.cookies.access_token)
     // {data:currentProfile}
     // console.log({data:currentProfile});
 
@@ -16,36 +17,36 @@ const getProfile = async (req) => {
 
 }
 
-const getTopTracks = async (req,itemLimit)=>{
-    const {limit,offset,page} = getUrlQuery(req.params,itemLimit)
+const getTopTracks = async (req, itemLimit) => {
+    const { limit, offset, page } = getUrlQuery(req.params, itemLimit)
 
-    const {data:topTracks} = await getData(`/me/top/tracks?limit=${limit}&offset=${offset}`,req.cookies.access_token) 
+    const { data: topTracks } = await getData(`/me/top/tracks?limit=${limit}&offset=${offset}`, req.cookies.access_token)
 
     const baseUrl = `${req.baseUrl}/top/track`
 
-    return {baseUrl,page,...topTracks}
+    return { baseUrl, page, ...topTracks }
 
 
 }
 
-const getTopArtists = async ( req,itemLimit)=>{
-    const {limit,offset,page} = getUrlQuery(req.params,itemLimit)
+const getTopArtists = async (req, itemLimit) => {
+    const { limit, offset, page } = getUrlQuery(req.params, itemLimit)
 
-    const {data:topArtist} = await getData(`/me/top/artists?limit=${limit}&offset=${offset}`,req.cookies.access_token) 
+    const { data: topArtist } = await getData(`/me/top/artists?limit=${limit}&offset=${offset}`, req.cookies.access_token)
     const baseUrl = `${req.baseUrl}/top/artist`
 
-    return {baseUrl,page,...topArtist}
+    return { baseUrl, page, ...topArtist }
 
-    
+
 }
 
-const getFollowedArtist = async (req)=>{
-     const {data:{artists:followedArtist}} = await getData('/me/following?type=artist',req.cookies.access_token)
+const getFollowedArtist = async (req) => {
+    const { data: { artists: followedArtist } } = await getData('/me/following?type=artist', req.cookies.access_token)
 
-     return followedArtist
+    return followedArtist
 }
 
-module.exports = {
+export {
     getProfile,
     getTopArtists,
     getTopTracks,

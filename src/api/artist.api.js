@@ -3,11 +3,11 @@
 /**
  * custom modules
 */
-  
-const {getData} = require('../config/axios.config')
-const apiConfig = require('../config/api.config');
-const { getUrlQuery } = require('../utils/helpers.util');
-  
+import { getData } from '../config/axios.config.js';
+import * as apiConfig from '../config/api.config.js';
+
+import {getUrlQuery}  from '../utils/helpers.util.js';
+
 const getSeveralDetail = async(req,artistIds) =>{
     const {data:trackArtists} = await getData(`/artists?ids=${artistIds}`,req.cookies.access_token);
     // console.log(trackArtists);
@@ -53,12 +53,10 @@ const getArtistRelated = async (req,id) =>{
     return relatedArtist
 }
  
-module.exports={
+export {
     getSeveralDetail,
     getAlbum,
     getDetail,
     getTopTracks,
     getArtistRelated
-}
-  
-     
+};

@@ -1,11 +1,13 @@
-'user route'
+/**
+ * user route
+ */
 
 /**
  * node modules
  * 
  */
 
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  * custom modules
@@ -13,17 +15,14 @@ const router = require('express').Router()
  */
 
 
-const {
-    profile,
-    topArtist,
-    topTrack
-} = require('../controllers/profile.controller')
+import { profile, topArtist, topTrack } from '../controllers/profile.controller.js';
 
-router.get('/',profile)
+const router = Router();
 
-router.get(['/top/artist','/top/artist/page/:page'],topArtist)
+router.get('/', profile);
 
-router.get(['/top/track','/top/track/page/:page'],topTrack )
+router.get(['/top/artist', '/top/artist/page/:page'], topArtist);
 
-module.exports = router
+router.get(['/top/track', '/top/track/page/:page'], topTrack);
 
+export default router;

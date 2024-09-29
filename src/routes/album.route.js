@@ -1,20 +1,21 @@
-'use strict'
+"use strict";
 
 /**
  * node modules
  */
 
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  * custom modules
 */
 
-const {album, albumDetail} = require('../controllers/album.controller')
+import { album, albumDetail } from '../controllers/album.controller.js';
 
-router.get(['/','/page/:page'],album)
+const router = Router();
 
-router.get('/:albumId',albumDetail)
+router.get(['/','/page/:page'], album);
 
+router.get('/:albumId', albumDetail);
 
-module.exports = router
+export default router;

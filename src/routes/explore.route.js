@@ -1,15 +1,17 @@
-'use strict'
+"use strict";
 
-const router = require('express').Router()
+import { Router } from 'express';
 
 /**
  * custom modules
  */
 
-const {explore ,exploreDetail }= require('../controllers/explore.controller')
+import { explore, exploreDetail } from '../controllers/explore.controller.js';
 
-router.get(['/','/page/:page'],explore)
+const router = Router();
 
-router.get(['/:categoryId','/:categoryId/page/:page'],exploreDetail)
+router.get(['/','/page/:page'], explore);
 
-module.exports = router 
+router.get(['/:categoryId','/:categoryId/page/:page'], exploreDetail);
+
+export default router;

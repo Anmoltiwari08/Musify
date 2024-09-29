@@ -1,17 +1,15 @@
-'use strict'
+"use strict";
 
-/**
- * node modules
- * 
- */
+import { Router } from 'express';
 
-const router = require('express').Router()
 /**
  * custom modules
  */
 
-const {login}= require('../controllers/login.controller')
+import { login } from '../controllers/login.controller.js';
 
-router.get('/',login)
+const router = Router();
 
-module.exports = router
+router.get('/', login);
+
+export default router;

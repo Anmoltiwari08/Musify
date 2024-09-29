@@ -1,17 +1,19 @@
-'use strict'
+"use strict";
 
 /**
  * node modules
  */
-   
-const router = require('express').Router()
 
-   /**
-   * custom modules
-   */
+import { Router } from 'express';
 
-const {logout}=  require('../controllers/logout.controller')
+/**
+ * custom modules
+ */
 
-router.get('/',logout)
+import { logout } from '../controllers/logout.controller.js';
 
-module.exports = router
+const router = Router();
+
+router.get('/', logout);
+
+export default router;

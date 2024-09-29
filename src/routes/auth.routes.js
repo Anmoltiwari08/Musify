@@ -1,20 +1,22 @@
-'use strict'
+"use strict";
 
 /**
  * node modules 
  *  */
 
-const router = require('express').Router()
- 
-/* 
+import { Router } from 'express';
+
+/**
  * custom modules  
  */ 
 
-const {auth,callback} = require('../controllers/auth.controller')
-const {refreshToken} = require('../controllers/refresh_token.controller')
+import { auth, callback } from '../controllers/auth.controller.js';
+import { refreshToken } from '../controllers/refresh_token.controller.js';
 
-router.get('/', auth); 
-router.get('/callback',callback ); 
-router.get('/refresh_token',refreshToken)
+const router = Router();
 
-module.exports = router   
+router.get('/', auth);
+router.get('/callback', callback);
+router.get('/refresh_token', refreshToken);
+
+export default router;

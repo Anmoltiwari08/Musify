@@ -3,8 +3,11 @@
 /**
  * custom modules
  */
-const {getData} = require('../config/axios.config')
-const {getUrlQuery} = require('../utils/helpers.util')
+import { getData } from '../config/axios.config.js';
+
+
+import {getUrlQuery}  from '../utils/helpers.util.js';
+
 
 const getNewRelease = async (req,itemLimit)=>{
       const {limit,offset,page} = getUrlQuery(req.params,itemLimit)
@@ -23,7 +26,7 @@ const getDetail = async (req)=>{
      return albumDetail
 }
 
-module.exports={
+export{
   getNewRelease,
   getDetail
               

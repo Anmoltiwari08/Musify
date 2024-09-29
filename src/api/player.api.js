@@ -1,18 +1,17 @@
-'use strict'
+"use strict";
+
 /**
  * custom modules
  */
 
-const {getData} = require('../config/axios.config')
+import { getData } from '../config/axios.config.js';
+import *as apiConfig from '../config/api.config.js';
 
-const apiConfig = require('../config/api.config')
+const getRecentlyPlayed = async (req, itemLimit = apiConfig.DEFAULT_LIMIT) => {
+    const { data: recentlyPlayed } = await getData(`/me/player/recently-played?limit=${itemLimit}`, req.cookies.access_token);
+    console.log(recentlyPlayed);
 
-const getRecentlyPlayed = async (req, itemLimit = apiConfig.DEFAULT_LIMIT)=>{
-    const {data:recentlyPlayed} = await getData(`/me/player/recently-played?limit=${itemLimit}`, req.cookies.access_token);
-   console.log(recentlyPlayed );
-   
-    return recentlyPlayed
-    
-}
+    return recentlyPlayed;
+};
 
-module.exports ={getRecentlyPlayed}
+export { getRecentlyPlayed };
